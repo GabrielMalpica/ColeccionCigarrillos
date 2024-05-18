@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de cigarrillos</title>
+    <link rel="stylesheet" href="/static/styles-index.css">
+    <link rel="icon" href="https://apex.oracle.com/pls/apex/r/vcc_mik/167859/files/static/v11/icons/app-icon-512.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>Venta de cigarrillos</h1>
+        <div>
+            <span></span>
+            <p>GRUPO 6</p>
+        </div>
+    </header>
+    <nav>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                Home
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button" id="lista-cigarrillos">Lista de cigarrillos</button></li>
+              <li><button class="dropdown-item" type="button" id="lista-supuestos">Supuestos</button></li>
+              <li><button class="dropdown-item" type="button" id="lista-estancos">Estancos</button></li>
+              <li><button class="dropdown-item" type="button" id="lista-almacenes">Almacenes</button></li>
+              <li><button class="dropdown-item" type="button" id="lista-compras">Compras</button></li>
+              <li><button class="dropdown-item" type="button" id="lista-fabricantes">Fabricantes</button></li>
+              <li><button class="dropdown-item" type="button" id="lista-manufactura">Manufactura</button></li>
+            </ul>
+          </div>
+        <div class="nav-item">
+            <p>Agregar fabricante</p>
+        </div>
+         <div class="nav-item">
+            <p>Fechas de compra venta</p>
+        </div>
+         <div class="nav-item">
+            <p>Manufactura</p>
+        </div>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                Reportes
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button">Información ventas</button></li>
+              <li><button class="dropdown-item" type="button">Reporte estancos</button></li>
+              <li><button class="dropdown-item" type="button">Información compras</button></li>
+              <li><button class="dropdown-item" type="button">Reporte cigarrillos</button></li>
+              <li><button class="dropdown-item" type="button">Reporte cigarrillos 2</button></li>
+          </div>
+        <div>
+    </nav>
+
+    <main>
+        <div class="main-container">
+            <figure>
+                <img src="https://apex.oracle.com/pls/apex/r/vcc_mik/167859/files/static/v11/icons/app-icon-512.png" alt="">
+            </figure>
+            <h2>Cigarrillos</h2>
+        </div>
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-custom" type="button">Reporte manufactura</button>
+            <button class="btn btn-custom" type="button">Reporte compra</button>
+            <button class="btn btn-custom" type="button">Reporte venta</button>
+        </div>
+    </main>
+    <footer>
+        
+    </footer>
+    <script src="/static/router.js"></script>
+</body>
+</html>
