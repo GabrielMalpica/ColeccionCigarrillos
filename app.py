@@ -112,6 +112,10 @@ def get_lista_manufactura():
 ################################################################
 
 ############Peticiones para guardar informacion################
+@app.route('/agregar-fabricante')
+def agregar_fabricante():
+    return render_template('agregarfabricante.html')
+
 @app.post('/api/agregar-fabricante')
 def create_fabricante():
     new_fabricante = request.get_json()
