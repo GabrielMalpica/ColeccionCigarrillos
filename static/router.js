@@ -1,5 +1,5 @@
 document.getElementById('lista-cigarrillos').addEventListener('click', function() {
-    window.location.href = 'http://127.0.0.1:5000/api/lista-de-cigarrillos';
+    window.location.href = 'cigarrillos';
 });
 
 document.getElementById('lista-supuestos').addEventListener('click', function() {
@@ -19,9 +19,9 @@ document.getElementById('lista-compras').addEventListener('click', function() {
 });
 
 document.getElementById('lista-fabricantes').addEventListener('click', function() {
-    window.location.href = 'http://127.0.0.1:5000/api/lista-de-fabricantes';
+    window.location.href = 'fabricantes';
 });
 
 document.getElementById('lista-manufactura').addEventListener('click', function() {
-    window.location.href = 'http://127.0.0.1:5000/api/lista-de-manufactura';
+    window.location.href = 'manufactura';
 });

@@ -1,4 +1,4 @@
-from flask import Flask, send_file, request, jsonify
+from flask import Flask, send_file, request, jsonify,render_template
 from psycopg2 import connect, extras
 
 app = Flask(__name__)
@@ -18,6 +18,10 @@ def home():
     return send_file('static/index.html')
 
 #############Peticiones para traer informacion###########
+@app.route('/cigarrillos')
+def cigarrillos():
+    return render_template('cigarrillos.html')
+
 @app.get('/api/lista-de-cigarrillos')
 def get_lista_cigarrillos():
     conn = get_connection()
@@ -71,6 +75,10 @@ def get_lista_compras():
 
     return jsonify(compras)
 
+@app.route('/fabricantes')
+def fabricantes():
+    return render_template('fabricantes.html')
+
 @app.get('/api/lista-de-fabricantes')
 def get_lista_fabricantes():
     conn = get_connection()
@@ -83,6 +91,10 @@ def get_lista_fabricantes():
     conn.close()
 
     return jsonify(fabricantes)
+
+@app.route('/manufactura')
+def manufactura():
+    return render_template('manufactura.html')
 
 @app.get('/api/lista-de-manufactura')
 def get_lista_manufactura():
