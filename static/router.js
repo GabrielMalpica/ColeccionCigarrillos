@@ -8,11 +8,10 @@ document.getElementById('lista-manufactura').addEventListener('click', function(
 
 document.getElementById('lista-fabricantes').addEventListener('click', function() {
     window.location.href = 'fabricantes';
-    console.log('hola')
 });
 
 document.getElementById('lista-supuestos').addEventListener('click', function() {
-    window.location.href = '';
+    window.location.href = 'supuestos';
 });
 
 document.getElementById('lista-estancos').addEventListener('click', function() {

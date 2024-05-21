@@ -17,6 +17,10 @@ def get_connection():
 def home():
     return send_file('static/index.html')
 
+@app.route('/supuestos')
+def supuestos():
+    return render_template('supuestos.html')
+
 #############Peticiones para traer informacion###########
 @app.route('/cigarrillos')
 def cigarrillos():
