@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Ventas por Estanco</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #chart-container {
+            width: 900px;
+            height: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reporte de Ventas Totales por Estanco</h1>
+    <div id="chart-container">
+        <canvas id="myBarChart"></canvas>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const response = await fetch('/api/reporte-ventas-estanco');
+            const data = await response.json();
+            
+            const labels = data.map(item => item.nif_estanco);
+            const ventas = data.map(item => item.total_vendida);
+
+            const ctx = document.getElementById('myBarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Ventas Totales',
+                            data: ventas,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

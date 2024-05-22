@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Compras por Fecha</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #chart-container {
+            width: 1100px;
+            height: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reporte de Compras por Fecha</h1>
+    <div id="chart-container">
+        <canvas id="myLineChart"></canvas>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const response = await fetch('/api/reporte-compras-fecha');
+            const data = await response.json();
+            
+            const labels = data.map(item => item.fecha_compra);
+            const values = data.map(item => item.total_comprada);
+
+            const ctx = document.getElementById('myLineChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total Comprada',
+                        data: values,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

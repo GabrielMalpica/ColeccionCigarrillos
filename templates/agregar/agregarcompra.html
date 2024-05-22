@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Compra</title>
+    <link rel="stylesheet" href="static/css/agregarfabricantes.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+    .table .thead-dark th {
+        background-color: #da1b1b;
+        border: #da1b1b;
+    }
+</style>
+<body>
+    <header>
+        <h1>Venta de cigarrillos</h1>
+        <div>
+            <span></span>
+            <p>GRUPO 6</p>
+        </div>
+    </header>
+    
+    <section class="seccion-titulo">
+        <a href="static/index.html">Home \</a>
+        <h2>Agregar Compra</h2>
+    </section>
+
+    <section class="seccion-form">
+        <form id="compraForm">
+            <div class="form-group">
+                <label for="nifEstanco">NIF Estanco</label>
+                <input type="text" class="form-control" id="nifEstanco" placeholder="Ingrese el NIF del estanco" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input type="text" class="form-control" id="marca" placeholder="Ingrese la marca" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="filtro">Filtro</label>
+                <input type="text" class="form-control" id="filtro" placeholder="Ingrese el filtro" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="color">Color</label>
+                <input type="text" class="form-control" id="color" placeholder="Ingrese el color" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="clase">Clase</label>
+                <input type="text" class="form-control" id="clase" placeholder="Ingrese la clase" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="mentol">Mentol</label>
+                <input type="text" class="form-control" id="mentol" placeholder="Ingrese mentol (S/N)" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="fechaCompra">Fecha Compra</label>
+                <input type="date" class="form-control" id="fechaCompra" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="cComprada">Cantidad Comprada</label>
+                <input type="number" class="form-control" id="cComprada" placeholder="Ingrese la cantidad comprada" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="precioCompra">Precio Compra</label>
+                <input type="number" class="form-control" id="precioCompra" placeholder="Ingrese el precio de compra" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+
+            const compraForm = document.querySelector("#compraForm");
+            compraForm.addEventListener('submit', async e => {
+                e.preventDefault();
+
+                const compraData = {
+                    nif_estanco: compraForm['nifEstanco'].value,
+                    marca: compraForm['marca'].value,
+                    filtro: compraForm['filtro'].value,
+                    color: compraForm['color'].value,
+                    clase: compraForm['clase'].value,
+                    mentol: compraForm['mentol'].value,
+                    fecha_compra: compraForm['fechaCompra'].value,
+                    c_comprada: compraForm['cComprada'].value,
+                    precio_compra: compraForm['precioCompra'].value,
+                };
+
+                try {
+                    const response = await fetch('/api/agregar-compra', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(compraData)
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        alert('Compra agregada con éxito');
+                        await loadCompras();
+                    } else {
+                        console.error('Error en la respuesta:', response.statusText);
+                    }
+                } catch (error) {
+                    console.error('Error en la solicitud:', error);
+                }
+            });
+        });
+
+        async function eliminarCompra(nif_estanco, marca, filtro, color, clase, mentol, fecha_compra) {
+            if (!confirm('¿Estás seguro de que deseas eliminar esta compra?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/eliminar-compra', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ nif_estanco, marca, filtro, color, clase, mentol, fecha_compra })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(`Compra eliminada con éxito`);
+                    await loadCompras();
+                } else {
+                    console.error('Error en la respuesta:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error en la solicitud:', error);
+            }
+        }
+    </script>
+</body>
+</html>

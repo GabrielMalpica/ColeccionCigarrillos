@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Almacenes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    .table .thead-dark th{
+        background-color: #da1b1b;
+        border: #da1b1b;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1 class="my-4">Lista de Almacenes</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NIF Estanco</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Filtro</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Clase</th>
+                    <th scope="col">Mentol</th>
+                    <th scope="col">Unidades</th>
+                </tr>
+            </thead>
+            <tbody id="almacenes-table-body">
+                <!-- Los datos se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Función para obtener los datos de la API y mostrarlos en la tabla
+        async function loadAlmacenes() {
+            try {
+                const response = await fetch('/api/lista-de-almacenes');
+                const almacenes = await response.json();
+
+                const tableBody = document.getElementById('almacenes-table-body');
+                tableBody.innerHTML = ''; // Limpia el contenido previo
+                almacenes.forEach((almacen, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <th scope="row">${index + 1}</th>
+                        <td>${almacen.nif_estanco}</td>
+                        <td>${almacen.marca}</td>
+                        <td>${almacen.filtro}</td>
+                        <td>${almacen.color}</td>
+                        <td>${almacen.clase}</td>
+                        <td>${almacen.mentol}</td>
+                        <td>${almacen.unidades}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching almacenes:', error);
+            }
+        }
+
+        // Llama a la función para cargar los datos cuando la página se cargue
+        window.onload = loadAlmacenes;
+    </script>
+</body>
+</html>

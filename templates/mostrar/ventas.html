@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Ventas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    .table .thead-dark th {
+        background-color: #da1b1b;
+        border: #da1b1b;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1 class="my-4">Lista de Ventas</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NIF Estanco</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Filtro</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Clase</th>
+                    <th scope="col">Mentol</th>
+                    <th scope="col">Fecha Venta</th>
+                    <th scope="col">Cantidad Vendida</th>
+                    <th scope="col">Precio Venta</th>
+                </tr>
+            </thead>
+            <tbody id="ventas-table-body">
+                <!-- Los datos se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Función para obtener los datos de la API y mostrarlos en la tabla
+        async function loadVentas() {
+            try {
+                const response = await fetch('/api/lista-de-ventas');
+                const ventas = await response.json();
+
+                const tableBody = document.getElementById('ventas-table-body');
+                tableBody.innerHTML = ''; // Limpia el contenido previo
+                ventas.forEach((venta, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <th scope="row">${index + 1}</th>
+                        <td>${venta.nif_estanco}</td>
+                        <td>${venta.marca}</td>
+                        <td>${venta.filtro}</td>
+                        <td>${venta.color}</td>
+                        <td>${venta.clase}</td>
+                        <td>${venta.mentol}</td>
+                        <td>${venta.fecha_venta}</td>
+                        <td>${venta.c_vendida}</td>
+                        <td>${venta.precio_venta}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching ventas:', error);
+            }
+        }
+
+        // Llama a la función para cargar los datos cuando la página se cargue
+        window.onload = loadVentas;
+    </script>
+</body>
+</html>

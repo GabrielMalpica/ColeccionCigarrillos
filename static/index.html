@@ -24,34 +24,30 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <li><button class="dropdown-item" type="button" id="lista-cigarrillos">Lista de cigarrillos</button></li>
-              <li><button class="dropdown-item" type="button" id="lista-supuestos">Supuestos</button></li>
               <li><button class="dropdown-item" type="button" id="lista-estancos">Estancos</button></li>
               <li><button class="dropdown-item" type="button" id="lista-almacenes">Almacenes</button></li>
               <li><button class="dropdown-item" type="button" id="lista-compras">Compras</button></li>
+              <li><button class="dropdown-item" type="button" id="lista-ventas">Ventas</button></li>
               <li><button class="dropdown-item" type="button" id="lista-fabricantes">Fabricantes</button></li>
             </ul>
-          </div>
-        <div class="nav-item" id="agregar-fabricante">
-            <p>Agregar fabricante</p>
+        </div>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                Agregar
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <li><button class="dropdown-item" type="button" id="agregar-fabricante">Agregar fabricante</button></li>
+              <li><button class="dropdown-item" type="button" id="agregar-manufactura">Agregar manufactura</button></li>
+              <li><button class="dropdown-item" type="button" id="agregar-compra">Agregar compra</button></li>
+              <li><button class="dropdown-item" type="button" id="agregar-venta">Agregar venta</button></li>
+            </ul>
         </div>
          <div class="nav-item">
-            <p>Fechas de compra venta</p>
+            <p>Vistas</p>
         </div>
          <div class="nav-item" id="lista-manufactura">
             <p>Manufactura</p>
         </div>
-        <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                Reportes
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <li><button class="dropdown-item" type="button">Información ventas</button></li>
-              <li><button class="dropdown-item" type="button">Reporte estancos</button></li>
-              <li><button class="dropdown-item" type="button">Información compras</button></li>
-              <li><button class="dropdown-item" type="button">Reporte cigarrillos</button></li>
-              <li><button class="dropdown-item" type="button">Reporte cigarrillos 2</button></li>
-          </div>
-        <div>
     </nav>
 
     <main>
@@ -63,9 +59,12 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-custom" id="reporte-manufactura" type="button">Reporte manufactura</button>
-            <button class="btn btn-custom" id="reporte-compra" type="button">Reporte compra</button>
-            <button class="btn btn-custom" id="reporte-venta" type="button">Reporte venta</button>
+            <button class="btn btn-custom" type="button" id="reporte-ventas">Reporte ventas</button>
+            <button class="btn btn-custom" type="button" id="reporte-compras">Reporte compras</button>
+            <button class="btn btn-custom" type="button" id="reporte-cigarrillos">Reporte cigarrillos</button>
+            <button class="btn btn-custom" type="button" id="reporte-ventas-estanco">Reporte ventas por estanco</button>
+            <button class="btn btn-custom" type="button" id="reporte-stock">Reporte stock actual por estanco</button>
+            <button class="btn btn-custom" type="button" id="reporte-compras-fecha">Reporte compras por fecha</button>
         </div>
     </main>
     <footer>
