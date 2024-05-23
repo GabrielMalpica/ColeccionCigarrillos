@@ -22,6 +22,48 @@ def supuestos():
     return render_template('supuestos.html')
 
 #############MOSTRAR VISTAS####################
+@app.route('/vistas')
+def vistas():
+    return render_template('/mostrar/vistas.html')
+
+@app.get('/api/vista-compras-totales-por-estanco')
+def get_compras_totales_por_estanco():
+    conn = get_connection()
+    cur = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    cur.execute('SELECT * FROM vw_compras_totales_por_estanco')
+    compras_totales = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    return jsonify(compras_totales)
+
+@app.get('/api/vista-inventario-por-estanco-marca')
+def get_inventario_por_estanco_marca():
+    conn = get_connection()
+    cur = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    cur.execute('SELECT * FROM vw_inventario_por_estanco_marca')
+    inventario = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    return jsonify(inventario)
+
+@app.get('/api/vista-detalles-ventas-por-estanco-marca')
+def get_detalles_ventas_por_estanco_marca():
+    conn = get_connection()
+    cur = conn.cursor(cursor_factory=extras.RealDictCursor)
+
+    cur.execute('SELECT * FROM vw_detalles_ventas_por_estanco_marca')
+    detalles_ventas = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    return jsonify(detalles_ventas)
 
 #############Peticiones para traer informacion###########
 

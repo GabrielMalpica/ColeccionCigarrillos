@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vistas de Base de Datos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<style>
+    .table .thead-dark th{
+        background-color: #da1b1b;
+        border: none;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1 class="my-4" style="font-size: 48px; text-align: center; font-weight: bold;">Vistas de Base de Datos</h1>
+
+        <!-- Vista compras_totales_por_estanco -->
+        <h2>Compras Totales por Estanco</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NIF Estanco</th>
+                    <th scope="col">Total Comprado</th>
+                </tr>
+            </thead>
+            <tbody id="compras-table-body">
+                <!-- Datos de la vista se cargarán aquí -->
+            </tbody>
+        </table>
+
+        <!-- Vista inventario_por_estanco_marca -->
+        <h2>Inventario por Estanco y Marca</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NIF Estanco</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Unidades</th>
+                </tr>
+            </thead>
+            <tbody id="inventario-table-body">
+                <!-- Datos de la vista se cargarán aquí -->
+            </tbody>
+        </table>
+
+        <!-- Vista detalles_ventas_por_estanco_marca -->
+        <h2>Detalles de Ventas por Estanco y Marca</h2>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NIF Estanco</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Fecha Venta</th>
+                    <th scope="col">Cantidad Vendida</th>
+                    <th scope="col">Precio Venta</th>
+                </tr>
+            </thead>
+            <tbody id="detalles-ventas-table-body">
+                <!-- Datos de la vista se cargarán aquí -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Función para cargar los datos de la vista compras_totales_por_estanco
+        async function loadComprasTotalesPorEstanco() {
+            try {
+                const response = await fetch('/api/vista-compras-totales-por-estanco');
+                const compras = await response.json();
+
+                const tableBody = document.getElementById('compras-table-body');
+                tableBody.innerHTML = ''; // Limpia el contenido previo
+                compras.forEach((compra, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <th scope="row">${index + 1}</th>
+                        <td>${compra.nif_estanco}</td>
+                        <td>${compra.total_comprado}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching compras totales por estanco:', error);
+            }
+        }
+
+        // Función para cargar los datos de la vista inventario_por_estanco_marca
+        async function loadInventarioPorEstancoMarca() {
+            try {
+                const response = await fetch('/api/vista-inventario-por-estanco-marca');
+                const inventario = await response.json();
+
+                const tableBody = document.getElementById('inventario-table-body');
+                tableBody.innerHTML = ''; // Limpia el contenido previo
+                inventario.forEach((item, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <th scope="row">${index + 1}</th>
+                        <td>${item.nif_estanco}</td>
+                        <td>${item.marca}</td>
+                        <td>${item.unidades}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching inventario por estanco y marca:', error);
+            }
+        }
+
+        // Función para cargar los datos de la vista detalles_ventas_por_estanco_marca
+        async function loadDetallesVentasPorEstancoMarca() {
+            try {
+                const response = await fetch('/api/vista-detalles-ventas-por-estanco-marca');
+                const detallesVentas = await response.json();
+
+                const tableBody = document.getElementById('detalles-ventas-table-body');
+                tableBody.innerHTML = ''; // Limpia el contenido previo
+                detallesVentas.forEach((detalle, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <th scope="row">${index + 1}</th>
+                        <td>${detalle.nif_estanco}</td>
+                        <td>${detalle.marca}</td>
+                        <td>${detalle.fecha_venta}</td>
+                        <td>${detalle.c_vendida}</td>
+                        <td>${detalle.precio_venta}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Error fetching detalles de ventas por estanco y marca:', error);
+            }
+        }
+
+        // Llama a las funciones para cargar los datos cuando la página se cargue
+        window.onload = function() {
+            loadComprasTotalesPorEstanco();
+            loadInventarioPorEstancoMarca();
+            loadDetallesVentasPorEstancoMarca();
+        };
+    </script>
+</body>
+</html>

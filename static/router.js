@@ -66,3 +66,7 @@ document.getElementById('reporte-stock').addEventListener('click', function() {
 document.getElementById('reporte-compras-fecha').addEventListener('click', function() {
     window.location.href = 'reporte-compras-fecha';
 });
+
+document.getElementById('vistas').addEventListener('click', function() {
+    window.location.href = 'vistas';
+});
